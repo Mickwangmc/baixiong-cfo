@@ -50,9 +50,20 @@ bot.on('message', async event => {
   }
 });
 
+function render(filename, callback) {
+  fs.readFile(filename, 'utf8', (err, data) => {
+    if (err) return callback(err);
+
+    callback(null, data); 
+  });
+}
+
 app.get('/', (req, res) => {
-    res.send('<h1>我是白熊財務長</h1>')
+  render('index.html', (err, data) => {
+    res.send(data);
+  });
 })
+
 app.post('/', linebotParser);
 
 var server = app.listen(process.env.PORT || 8080, function () {
