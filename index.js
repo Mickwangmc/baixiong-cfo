@@ -50,6 +50,9 @@ bot.on('message', async event => {
   }
 });
 
+app.get('/', (req, res) => {
+    res.send('<h1>我是白熊財務長</h1>')
+})
 app.post('/', linebotParser);
 
 var server = app.listen(process.env.PORT || 8080, function () {
